@@ -1,0 +1,101 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ *
+ * ScyllaJNS — keymap (58 teclas) — ABNT2
+ *
+ * Ordem dos bindings segue o matrix_transform exatamente:
+ *   Linhas 0–3: 12 teclas cada  → 48 bindings
+ *   Linha 4 thumb: 3 esq + 3 dir → 6 bindings   (RC 4,3..4,5 | 4,6..4,8)
+ *   Linha 5 thumb: 2 esq + 2 dir → 4 bindings   (RC 5,4..5,5 | 5,6..5,7)
+ *   Total: 58 bindings por layer
+ *
+ * Layout físico — default:
+ * ╭─────┬─────┬─────┬─────┬─────┬─────╮   ╭─────┬─────┬─────┬─────┬─────┬─────╮
+ * │ 1!¹ │ 2@² │ 3#³ │ 4$£ │ 5%¢ │ 6¨¬ │   │ 7&{ │ 8*[ │ 9(] │ 0)} │ -_\ │MUTE │  ← linha 0
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ ESC │  Q/ │  W? │  E° │  R® │  Tŧ │   │  Y← │  U↓ │  I→ │  Oø │  Pþ │BKSP │  ← linha 1
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │ TAB │  Aæ │  Sß │  Dð │  Fđ │  Gŋ │   │  Hħ │  J̉̉ˀ │  K  │  Lł │  Ç´ │ ENT │  ← linha 2
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │CAPS │  Z« │  X» │  C© │  V„ │  B“ │   │  N” │  Mµ │  <× │  >÷ │  :; │ DEL │  ← linha 3
+ * ╰─────┴─────┴─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┴─────┴─────╯
+ *                   │ GUI │ LWR │ SPC │   │SHFT │ RSE │ ALT │                    ← linha 4
+ *                   ╰─────┼─────┼─────╯   ╰─────┼─────╯─────╯
+ *                         │ mo3 │ ALT │   │RALT │RCTL │                          ← linha 5
+ *                         ╰─────┴─────╯   ╰─────┴─────╯
+ *
+ * Layout físico — lower (mo 1):
+ * ╭─────┬─────┬─────┬─────┬─────┬─────╮   ╭─────┬─────┬─────┬─────┬─────┬─────╮
+ * │     │     │     │     │     │     │   │     │     │     │     │ +=  │     │  ← linha 0
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │     │     │     │     │     │     │   │     │     │     │     │ ~^  │  ´` │  ← linha 1
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │     │  \  │     │     │     │     │   │     │     │     │     │     │     │  ← linha 2
+ * ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+ * │     │  §  |     │     │     │     │   │     │     │     │     │     │     │  ← linha 3
+ * ╰─────┴─────┴─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┴─────┴─────╯
+ *                   │     │     │     │   │     │     │     │                    ← linha 4
+ *                   ╰─────┼─────┼─────╯   ╰─────┼─────╯─────╯
+ *                         │     │     │   │     │     │                          ← linha 5
+ *                         ╰─────┴─────╯   ╰─────┴─────╯
+ *
+ * Referência ABNT2:
+ *   Ç              → &kp SEMI
+ *   < >            → &kp LS(COMMA)  /  &kp LS(DOT)
+ *   :              → &kp LS(SEMI)
+ *   { }            → &kp RA(SQT)    /  &kp RA(NUHS)
+ *   [ ]            → &kp RA(LBKT)   /  &kp RA(RBKT)
+ *   ~ (dead)       → &kp RBKT       (shift = ^ circunflexo)
+ *   ´ (dead)       → &kp LBKT       (shift = ` grave)
+ *   \              → &kp RA(MINUS)
+ *   |              → &kp RA(EQUAL)
+ *   '              → &kp SQT
+ *   "              → &kp LS(SQT)
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+/* linha 0 */ &kp N1    &kp N2  &kp N3  &kp N4    &kp N5  &kp N6     &kp N7    &kp N8  &kp N9    &kp N0   &kp MINUS  &kp C_MUTE
+/* linha 1 */ &kp ESC   &kp Q   &kp W   &kp E     &kp R   &kp T      &kp Y     &kp U   &kp I     &kp O    &kp P      &kp BSPC
+/* linha 2 */ &kp TAB   &kp A   &kp S   &kp D     &kp F   &kp G      &kp H     &kp J   &kp K     &kp L    &kp SEMI   &kp RET
+/* linha 3 */ &kp CAPS  &kp Z   &kp X   &kp C     &kp V   &kp B      &kp N     &kp M   &kp COMMA &kp DOT  &kp FSLH   &kp DEL
+/* linha 4 */                           &kp LGUI  &tog 1  &kp SPACE  &kp RSHFT &mo 2   &kp RALT
+/* linha 5 */                                     &mo 2   &kp LALT   &kp RALT  &kp RCTRL
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+
+        lower_layer {
+            bindings = <
+/* linha 0 */ &kp F1      &kp F2     &kp F3          &kp F4      &kp F5  &kp F6    &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
+/* linha 1 */ &kp APOS    &kp K_PP   &kp C_PREV      &kp K_NEXT  &trans  &trans    &kp LC(C)  &kp LC(V)  &kp CARET  &kp GRAVE  &kp EQUAL  &kp LBKT
+/* linha 2 */ &trans      &kp BSLH   &trans          &trans      &trans  &trans    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &kp LBRC   &kp RBRC
+/* linha 3 */ &kp K_CALC  &kp K_WWW  &kp C_AL_FILES  &trans      &trans  &trans    &kp HOME   &kp PG_UP  &kp PG_DN  &kp END    &kp INS    &kp PSCRN
+/* linha 4 */                                        &trans      &tog 1  &trans    &kp RSHFT  &trans     &trans
+/* linha 5 */                                                    &trans  &trans    &kp RALT   &trans
+            >;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+        };
+
+        bt_layer {
+            bindings = <
+/* linha 0 */ &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans  &trans
+/* linha 1 */ &trans      &trans       &trans       &trans       &trans       &trans          &trans  &trans  &trans  &trans  &trans  &trans
+/* linha 2 */ &trans      &trans       &trans       &trans       &trans       &trans          &trans  &trans  &trans  &trans  &trans  &trans
+/* linha 3 */ &trans      &trans       &trans       &trans       &trans       &trans          &trans  &trans  &trans  &trans  &trans  &trans
+/* linha 4 */                                       &trans       &trans       &trans          &trans  &trans  &trans
+/* linha 5 */                                                    &trans       &trans          &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
+    };
+};
