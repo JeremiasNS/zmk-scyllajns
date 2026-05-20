@@ -40,61 +40,13 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <physical_layouts.dtsi>
+#include "physical_layouts.dtsi"
 
 / {
-    chosen {
-        zmk,kscan = &kscan0;
-        zmk,matrix-transform = &default_transform;
-    };
-
-    default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform";
-        columns = <12>;
-        rows = <6>;
-        map = <
-RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)  RC(0,5)   RC(0,6)  RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11)
-RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4)  RC(1,5)   RC(1,6)  RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11)
-RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)  RC(2,5)   RC(2,6)  RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11)
-RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4)  RC(3,5)   RC(3,6)  RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11)
-                         RC(4,3) RC(4,4)  RC(4,5)   RC(4,6)  RC(4,7) RC(4,8)
-                                 RC(5,4)  RC(5,5)   RC(5,6)  RC(5,7)
-        >;
-    };
-
-    encoder: encoder_0 {
-        compatible = "alps,ec11";
-        a-gpios = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <80>;
-        status = "disabled";
-    };
-
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&encoder>;
-        triggers-per-rotation = <20>;
-    };
-
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";
-        wakeup-source;
-
-        row-gpios
-            = <&pro_micro 2  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R0 */
-            , <&pro_micro 3  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R1 */
-            , <&pro_micro 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R2 */
-            , <&pro_micro 5  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R3 */
-            , <&pro_micro 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R4 thumb */
-            , <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R5 thumb */
-            ;
-    };
-
-        physical_layout0: physical_layout_0 {
+        scyllajns_layout: scyllajns_layout {
         compatible = "zmk,physical-layout";
-        display-name = "Default";
-        // kscan = <&kscan0>;
+        display-name = "scyllajns";
+        kscan = <&kscan0>;
         transform = <&default_transform>;
         keys  //                      w   h    x    y     rot   rx    ry
             = <&key_physical_attrs 100 100    0   32       0     0     0>
@@ -145,18 +97,64 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4)  RC(3,5)   RC(3,6)  RC(3,7) RC(3,8) RC(3
             , <&key_physical_attrs 100 100 1100  300       0     0     0>
             , <&key_physical_attrs 100 100 1200  332       0     0     0>
             , <&key_physical_attrs 100 100 1300  332       0     0     0>
-            // Linha do Polegar 1 (6 chaves)
-            , <&key_physical_attrs 100 100  370  440    1500   430   455>
-            , <&key_physical_attrs 100 100  470  440    1500   430   455>
-            , <&key_physical_attrs 100 100  570  440    1500   430   455>
-            , <&key_physical_attrs 100 100  740  495 (-1500)   770   455>
-            , <&key_physical_attrs 100 100  840  495 (-1500)   770   455>
-            , <&key_physical_attrs 100 100  940  49  (-1500)   770   455>
-            // Linha do Polegar 2 (4 chaves)
-            , <&key_physical_attrs 100 100  470  540    1500   430   455>
-            , <&key_physical_attrs 100 100  570  540    1500   430   455>
-            , <&key_physical_attrs 100 100  740  595 (-1500)   770   455>
-            , <&key_physical_attrs 100 100  840  595 (-1500)   770   455>
+            , <&key_physical_attrs 100 100  370  432       0     0     0>
+            , <&key_physical_attrs 100 100  470  432       0     0     0>
+            , <&key_physical_attrs 100 100  570  432       0     0     0>
+            , <&key_physical_attrs 100 100  740  432       0     0     0>
+            , <&key_physical_attrs 100 100  840  432       0     0     0>
+            , <&key_physical_attrs 100 100  940  432       0     0     0>
+            , <&key_physical_attrs 100 100  470  532       0     0     0>
+            , <&key_physical_attrs 100 100  570  532       0     0     0>
+            , <&key_physical_attrs 100 100  740  532       0     0     0>
+            , <&key_physical_attrs 100 100  840  532       0     0     0>
+            ;
+        };
+
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix-transform = &scyllajns_layout;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <12>;
+        rows = <6>;
+        map = <
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)   RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11)
+            RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)   RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11)
+            RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)   RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)   RC(3,6) RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11)
+                            RC(4,3) RC(4,4) RC(4,5) RC(4,6)   RC(4,7) RC(4,8)
+                                    RC(5,4) RC(5,5) RC(5,6)   RC(5,7)
+        >;
+    };
+
+    encoder: encoder_0 {
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "disabled";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder>;
+        triggers-per-rotation = <20>;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        wakeup-source;
+
+        row-gpios
+            = <&pro_micro 2  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R0 */
+            , <&pro_micro 3  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R1 */
+            , <&pro_micro 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R2 */
+            , <&pro_micro 5  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R3 */
+            , <&pro_micro 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R4 thumb */
+            , <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* R5 thumb */
             ;
     };
 
