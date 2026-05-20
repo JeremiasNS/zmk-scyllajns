@@ -149,14 +149,14 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4)  RC(3,5)   RC(3,6)  RC(3,7) RC(3,8) RC(3
             , <&key_physical_attrs 100 100  370  440    1500   430   455>
             , <&key_physical_attrs 100 100  470  440    1500   430   455>
             , <&key_physical_attrs 100 100  570  440    1500   430   455>
-            , <&key_physical_attrs 100 100  740  495   -1500   770   455>
-            , <&key_physical_attrs 100 100  840  495   -1500   770   455>
-            , <&key_physical_attrs 100 100  940  495   -1500   770   455>
+            , <&key_physical_attrs 100 100  740  495 (-1500)   770   455>
+            , <&key_physical_attrs 100 100  840  495 (-1500)   770   455>
+            , <&key_physical_attrs 100 100  940  49  (-1500)   770   455>
             // Linha do Polegar 2 (4 chaves)
             , <&key_physical_attrs 100 100  470  540    1500   430   455>
             , <&key_physical_attrs 100 100  570  540    1500   430   455>
-            , <&key_physical_attrs 100 100  740  595   -1500   770   455>
-            , <&key_physical_attrs 100 100  840  595   -1500   770   455>
+            , <&key_physical_attrs 100 100  740  595 (-1500)   770   455>
+            , <&key_physical_attrs 100 100  840  595 (-1500)   770   455>
             ;
     };
 
