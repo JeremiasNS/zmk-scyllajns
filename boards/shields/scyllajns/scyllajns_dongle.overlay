@@ -8,11 +8,13 @@
 / {
     chosen {
         zmk,kscan = &mock_kscan;
-        zmk,physical-layout = &scyllajns_layout;
-        zephyr,display = &oled;
+        zmk,matrix-transform = &default_transform;
+        
+        /* ESTA LINHA É OBRIGATÓRIA PARA O ZMK STUDIO NO DONGLE */
+        zmk,physical-layout = &scyllajns_layout; 
     };
 
-    mock_kscan: mock_kscan_0 {
+    mock_kscan: kscan {
         compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
@@ -20,6 +22,12 @@
     };
 };
 
+/* Amarra o kscan virtual ao layout físico que criamos no outro arquivo */
+&scyllajns_layout {
+    kscan = <&mock_kscan>;
+};
+
+/* Mantemos o kscan físico desativado para não conflitar */
 &kscan0 {
     status = "disabled";
 };
