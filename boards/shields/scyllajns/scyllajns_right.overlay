@@ -27,16 +27,3 @@
         , <&pro_micro 18 GPIO_ACTIVE_HIGH>   /* C11 — P1.15 */
         ;
 };
-
-/ {
-    vbatt: vbatt {
-        compatible = "zmk,battery-voltage-divider";
-        io-channels = <&adc 2>;
-        output-ohms = <2000000>;
-        full-ohms = <3000000>;
-    };
-};
-
-&adc {
-    status = "okay";
-};
