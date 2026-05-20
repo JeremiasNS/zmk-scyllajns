@@ -5,6 +5,8 @@
         zmk,kscan = &mock_kscan;
         zmk,physical-layout = &scyllajns_layout;
         /* O zmk,matrix-transform já é herdado de scyllajns.dtsi */
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
     };
 
     mock_kscan: kscan {
