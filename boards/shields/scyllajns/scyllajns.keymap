@@ -79,7 +79,7 @@
             display-name = "Lower";
             bindings = <
 /* linha 0 */ &kp F1     &kp F2    &kp F3  &kp F4  &kp F5  &kp F6  &kp F7    &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
-/* linha 1 */ &kp GRAVE  &none     &none   &none   &none   &none   &none     &none      &kp UP     &none      &kp LBKT   &kp RBKT
+/* linha 1 */ &kp GRAVE  &none     &none   &none   &none   &none   &none     &none      &kp UP     &kp EQUAL  &kp LBKT   &kp RBKT
 /* linha 2 */ &none      &kp BSLH  &none   &none   &none   &none   &none     &kp LEFT   &kp DOWN   &kp RIGHT  &kp SQT    &kp NUHS
 /* linha 3 */ &none      &none     &none   &none   &none   &none   &kp HOME  &kp PG_UP  &kp PG_DN  &kp END    &kp INS    &kp PSCRN
 /* linha 4 */                                      &trans  &tog 1  &trans    &trans     &trans     &trans
@@ -114,13 +114,55 @@
     };
 
     behaviors {
-        mt_fast: mod_tap_fast {
+        mt_fast: mtap_custom {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <300>;  /* aumente esse valor */
+            tapping-term-ms = <400>;  /* aumente esse valor */
             quick-tap-ms = <200>;
             flavor = "tap-preferred";  /* favorece o toque em vez do hold */
             bindings = <&kp>, <&kp>;
+        };
+        
+        td_c: tap_dance_c {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp C>, <&kp LC(C)>;
+        };
+
+        td_v: tap_dance_v {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp V>, <&kp LC(V)>;
+        };
+
+        td_a: tap_dance_a {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp A>, <&kp LC(A)>;
+        };
+
+        td_s: tap_dance_s {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp S>, <&kp LC(S)>;
+        };
+
+        td_z: tap_dance_z {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Z>, <&kp LC(Z)>;
+        };
+
+        td_x: tap_dance_x {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp X>, <&kp LC(X)>;
         };
     };
 };
