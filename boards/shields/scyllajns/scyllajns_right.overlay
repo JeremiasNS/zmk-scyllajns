@@ -11,6 +11,7 @@
 /* Encoder EC11 habilitado apenas no lado direito */
 &encoder {
     status = "okay";
+    steps = <24>;
 };
 
 &default_transform {
